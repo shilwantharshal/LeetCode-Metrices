@@ -93,15 +93,13 @@ document.addEventListener("DOMContentLoaded", function(){
         console.log('carddataaaaaaaa',cardsData);
 
         cardStatsContainer.innerHTML = cardsData.map(
-            data => {
-                return `
+            data => `
                     <div class="card"
                     <h3>${data.label}</h3>
                     <p>${data.value}</p>
                     </div>
                 `
-            }
-        )
+        ).join("")
     }
 
     searchButton.addEventListener("click", function() {
