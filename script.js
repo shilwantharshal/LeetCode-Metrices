@@ -29,7 +29,7 @@ document.addEventListener("DOMContentLoaded", function(){
             searchButton.textContent = "Searching...";
             searchButton.disabled = true;
 
-            proxyUrl = "https://cors-anywhere.herokuapp.com/";
+            proxyUrl = "http://localhost:8080/";
             targetUrl = "https://leetcode.com/graphql/";
 
             const myHeaders = new Headers();
@@ -82,6 +82,26 @@ document.addEventListener("DOMContentLoaded", function(){
         updateProgress(solvedTotalEasyQues, totalEasyQue, easyLabel, easyProgressCircle );
         updateProgress(solvedTotalMedQues, totalMedQue, mediumLabel, mediumProgressCircle );
         updateProgress(solvedTotalHardQues, totalHardQue, hardLabel, hardProgressCircle);
+
+        const cardsData = [
+            {label: "Overall Submissions", value: parseData.data.matchedUser.submitStats.totalSubmissionNum[0].submissions},
+            {label: "Overall Easy Submissions", value: parseData.data.matchedUser.submitStats.totalSubmissionNum[1].submissions},
+            {label: "Overall Medium Submissions", value: parseData.data.matchedUser.submitStats.totalSubmissionNum[2].submissions},
+            {label: "Overall Hard Submissions", value: parseData.data.matchedUser.submitStats.totalSubmissionNum[3].submissions}
+        ]
+
+        console.log('carddataaaaaaaa',cardsData);
+
+        cardStatsContainer.innerHTML = cardsData.map(
+            data => {
+                return `
+                    <div class="card"
+                    <h3>${data.label}</h3>
+                    <p>${data.value}</p>
+                    </div>
+                `
+            }
+        )
     }
 
     searchButton.addEventListener("click", function() {
